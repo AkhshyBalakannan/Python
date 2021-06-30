@@ -2,8 +2,8 @@
 
 # # DECLARING FUNCTION
 
-# def speak():
-#     print('Hello! Can you read me!')
+def speak():
+    print('Hello! Can you read me!')
 
 
 # speak()
