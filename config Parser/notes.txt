@@ -1,0 +1,105 @@
+import configparser
+CONFIGPARSER TO CREATE FROM PROGRAM
+
+
+config = configparser.ConfigParser()
+
+DEFAULT LINE TO START THE CONFIGPARSER WE RUN THE CONFIGPARSER
+
+CONFIG[SECTION NAME] = {KEY: VALUE, }
+
+
+config['DEFAULT'] = {
+    'compressed': '9',
+    'canChange': 'yes'
+}
+config['USER DETAILS'] = {}
+config['USER DETAILS']['user'] = 'Akhshy Ganesh'
+
+config['MESSAGE'] = {}
+message = config['MESSAGE']
+message['from'] = 'Akhshy Ganesh'
+message['to'] = 'Ashwin Ganesh'
+
+with open('example.ini', 'w') as configfile:
+    config.write(configfile)
+
+
+WE CAN ALSO SEE THE DATA FROM THE TERMINAL OR USE IN FUNCTION
+
+IMPORT CONFIGPARSER
+RUN THE CONFIGPARSER IN CONFIG AND READ THE CONFIG FILE
+CONFIG.READ('FILE NAME.INI')
+CONFIG.SECTIONS() GIVES US THE SECTION NAMES
+
+config = configparser.ConfigParser()
+config.sections()  GIVES US THE SECTION VALUES
+
+config.read('example.ini')    GIVES US THE NAME
+
+config.sections() ONCE READ AN FILE WE CAN GET THE SECTION OUT
+
+'bitbucket.org' in config     RETURN BOOLEAN VALUES
+
+config['bitbucket.org']['User']   RETURN THE VALUE
+
+for key in config['bitbucket.org']:
+    print(key)
+
+
+HAS_SECTION() RETURNS WHETHER SECTION IS PRESENT OR NOT
+
+READ_STRING() READS THE STRING
+
+READ_DICT() READS THE DICTIONARY
+
+SUPPORTED DATA TYPES ARE MOSTLY STRINGS BECAUSE THE CONFIG WILL WRITTEN FROM CODE ARE
+STORED AS STRING AND USE OTHER DATA TYPE WE NEED TO PARSE THEM WE HAVE .GETBOOLEAN()
+
+FALL BACK ARE ALSO PRESENT
+
+WHERE WE CAN USE THE .GET METHOD TO GET THE DATA ARE TO RETURN THE DATA FROM THE SECTION
+IF THE DATA IS NOT PRESENT IN THE SECTION THEN NO RETURN VALUE WILL BE GIVEN AND TO GET SOME
+FALL BACK VALUE WE GIVE THE SECOND OR THE THIRD ARGUMENT AS THE FALL BACK
+
+topsecret.get('CompressionLevel')
+# '9' OUTPUT
+topsecret.get('Cipher')
+topsecret.get('Cipher', '3des-cbc')
+# '3des-cbc'  OUTPUT
+
+THE BELOW EXAMPLE IS CALLING THE SECTION NAME WITH KEY TO GET THE VALUE
+
+config.get('bitbucket.org', 'monster', fallback='No such things as monsters')
+'No such things as monsters'  OUTPUT
+
+
+INTERPOLATION IS ALLOWED OR PRESENT IN CONFIGPARSER
+AND SO THE DATA CAN BE PREPROCESSED BEFORE IT IS ACTUALLY PRINTED
+
+
+class configparser.BasicInterpolation:
+
+
+[Paths]
+home_dir: / Users
+my_dir: % (home_dir)s/lumberjack
+my_pictures: % (my_dir)s/Pictures
+
+[Escape]
+# use a %% to escape the % sign
+(% is the only character that needs to be escaped)
+gain: 80 % %
+
+
+class configparser.ExtendedInterpolation
+
+
+[Paths]
+home_dir: / Users
+my_dir: ${home_dir}/lumberjack
+my_pictures: ${my_dir}/Pictures
+
+[Escape]
+# use a $$ to escape the $ sign ($ is the only character that needs to be escaped)
+cost: $$80
