@@ -1,4 +1,8 @@
 # # CLASS IS DEF WITH CLASS AND CLASS NAME IN CAPITIAL LETTER
+# # CLASS NAME ARE USUALLY WRITTEN IN CAMELCASE LETTER
+
+
+#   print("Hello there!", end = '')
 
 # class Planet:
 #     def __init__(self):  # CONSTRUCT TYPE INIT
