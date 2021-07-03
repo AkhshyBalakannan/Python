@@ -1,8 +1,13 @@
 # #EXCEPTION HANDLING
 
+# exception EnvironmentError
+# exception IOError
+# exception WindowsError
+# Only available on Windows.
+
 # # SAME CONCEPT OF TRY CATCH BLOCK IS FOLLOWED BUT THE DIFFERENCE HERE IS IT USES EXCEPTION
 
-# a = 5 
+# a = 5
 # b = 0
 
 # try:
@@ -12,9 +17,9 @@
 #     print("'You Know I know' We are in ERROR")
 
 # # MOST BASIC CONCEPT OF EXCEPTIONAL ERROR
-# # WE ALSO HAVE NAME FOR EVERY ERROR WE GET AND WE CAN MATCH THOSE NAMES 
+# # WE ALSO HAVE NAME FOR EVERY ERROR WE GET AND WE CAN MATCH THOSE NAMES
 
-# a = 5 
+# a = 5
 # b = 5
 
 # try:
@@ -39,7 +44,7 @@
 #     div = a/b
 #     int(input("ENTER: "))
 
-# except: 
+# except:
 #     print("error")
 
 # finally:
@@ -47,7 +52,7 @@
 
 # # TO RAISE AN ERROR WE USE RAISE
 
-# # USER DEDFINED ERROR 
+# # USER DEDFINED ERROR
 
 # class UserDefinedError(Exception):
 #     def __init__(self, message):
@@ -62,6 +67,3 @@
 
 # finally:
 #     print("I think your clear with User Defined Error")
-
-
-
