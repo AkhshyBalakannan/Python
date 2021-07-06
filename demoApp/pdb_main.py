@@ -1,5 +1,6 @@
 import os
 import re
+import pdb
 import config_files
 from operation import NotHumanError, check_run_config_create, change_dir, create_file, create_folder
 
@@ -15,6 +16,7 @@ try:
     regex = "[A-Z]{1}[a-z]{1}[0-9]{1}"
 
     while start > 0:
+        pdb.set_trace()
         if(re.match(regex, captcha)):
             break
         else:
@@ -23,6 +25,7 @@ try:
             captcha = input("Enter here:  ")
 
     if start == 0:
+
         raise NotHumanError()
 
     to_config = input(

@@ -1,98 +1,99 @@
-# # CLASS IS DEF WITH CLASS AND CLASS NAME IN CAPITIAL LETTER
-# # CLASS NAME ARE USUALLY WRITTEN IN CAMELCASE LETTER
+# CLASS IS DEF WITH CLASS AND CLASS NAME IN CAPITIAL LETTER
+# CLASS NAME ARE USUALLY WRITTEN IN CAMELCASE LETTER
+
+print("Hello there!", end='')
 
 
-#   print("Hello there!", end = '')
+class Planet:
+    def __init__(self):  # CONSTRUCT TYPE INIT
+        self.name = 'earth'
+        self.radius = 20000
+        self.system = 'Hoth system'
 
-# class Planet:
-#     def __init__(self):  # CONSTRUCT TYPE INIT
-#         self.name = 'earth'
-#         self.radius = 20000
-#         self.system = 'Hoth system'
-
-#     def orbit(self):  # METHOD CREATED
-#         return f'{self.name} is orbiting in the {self.system}'
+    def orbit(self):  # METHOD CREATED
+        return f'{self.name} is orbiting in the {self.system}'
 
 
-# Pluto = Planet()
-# print(f'Name is: {Pluto.name}')
-# print(f'Radius is: {Pluto.radius }')
-# print(Pluto.orbit())
+Pluto = Planet()
+print(f'Name is: {Pluto.name}')
+print(f'Radius is: {Pluto.radius }')
+print(Pluto.orbit())
 
-# # THIS ABOVE EXAMPLE IS THE BASIC LEVEL OF CREATING CLASS WITH THE INSTANCES
-# # GIVEN WITH DEFAULT NAME WHICH IS NOT CORRECT BECAUSE THIS WILL NOT BE
-# # DYNAMIC WITH THE PRPGRAM AND SO WE TYPE THE CLASS INIT WITH ARG
-# # GIVEN THAT MATCHES THE SELF NAME AND EACH TIME A CLASS IS CALLED NEW DEFAULT
-# # VALUES ARE GIVEN TO THE CLASS SO IT BECOMES DYNAMIC
-
-
-# class Planet:
-#     def __init__(self, name, radius, system):  # ARG ARE GIVEN FOR DYNAMIC PURP
-#         self.name = name
-#         self.radius = radius
-#         self.system = system
-
-#     def orbit(self):
-#         return f'{self.name} is orbiting in the {self.system}'
+# THIS ABOVE EXAMPLE IS THE BASIC LEVEL OF CREATING CLASS WITH THE INSTANCES
+# GIVEN WITH DEFAULT NAME WHICH IS NOT CORRECT BECAUSE THIS WILL NOT BE
+# DYNAMIC WITH THE PRPGRAM AND SO WE TYPE THE CLASS INIT WITH ARG
+# GIVEN THAT MATCHES THE SELF NAME AND EACH TIME A CLASS IS CALLED NEW DEFAULT
+# VALUES ARE GIVEN TO THE CLASS SO IT BECOMES DYNAMIC
 
 
-# Pluto = Planet('earth', 2000, 'Hoth system')
-# print(f'Name is: {Pluto.name}')
-# print(f'Radius is: {Pluto.radius }')
-# print(Pluto.orbit())
+class Planet:
+    def __init__(self, name, radius, system):  # ARG ARE GIVEN FOR DYNAMIC PURP
+        self.name = name
+        self.radius = radius
+        self.system = system
+
+    def orbit(self):
+        return f'{self.name} is orbiting in the {self.system}'
 
 
-# # Class and Instance Variables
-
-# class Dog:
-
-#     kind = 'canine'         # class variable shared by all instances
-
-#     def __init__(self, name):
-#         self.name = name    # instance variable unique to each instance
+Pluto = Planet('earth', 2000, 'Hoth system')
+print(f'Name is: {Pluto.name}')
+print(f'Radius is: {Pluto.radius }')
+print(Pluto.orbit())
 
 
-# d = Dog('Fido')
-# e = Dog('Buddy')
-# d.kind                  # shared by all dogs
-# e.kind                  # shared by all dogs
-# d.name                  # unique to d
-# e.name                  # unique to e
+# Class and Instance Variables
 
-# # CLASS VARIABLE || INSTANCE VARIABLE
-# # CLASS METHOD || INSTANCE METHOD
-# # STATIC METHOD || INSTANCE METHOD
+class Dog:
 
-# class Planet:
+    kind = 'canine'         # class variable shared by all instances
 
-#     shape = 'round'  # CLASS VARIABLE ( BOTH )
-
-#     def __init__(self, name, radius, system):  # INSTANCE
-#         self.name = name        # INSTANCE VARIABLE
-#         self.radius = radius    # INSTANCE VARIABLE
-#         self.system = system    # INSTANCE VARIABLE
-
-#     def orbit(self):            # INSTANCE METHOD ( ONLY INST )
-#         return f'{self.name} is orbiting in the {self.system}'
-
-#     @classmethod
-#     def common(cls):            # CLASS METHOD ( BOTH )
-#         return f'All are {cls.shape}'  # USES THE CLASS VAR
-
-#     @staticmethod
-#     def spin(speed='really fast'):  # CANNOT TAKE COMMON VAR ONLY SHOULD TAKE PARAMETERS
-#         return f'Speed will be {speed}'  # NO ACCESS TO SHAPE
+    def __init__(self, name):
+        self.name = name    # instance variable unique to each instance
 
 
-# earth = Planet('earth', '2000', 'solar')
-# print(earth.orbit())    # instance method
-# # print(Planet.orbit())   # false if we call because it requires one arg
-# print(Planet.shape)
-# print(earth.shape)
-# print(Planet.common())
-# print(earth.common())
-# print(Planet.spin("dont know sorry"))
-# print(earth.spin("dont know sorry"))
+d = Dog('Fido')
+e = Dog('Buddy')
+d.kind                  # shared by all dogs
+e.kind                  # shared by all dogs
+d.name                  # unique to d
+e.name                  # unique to e
+
+# CLASS VARIABLE || INSTANCE VARIABLE
+# CLASS METHOD || INSTANCE METHOD
+# STATIC METHOD || INSTANCE METHOD
+
+
+class Planet:
+
+    shape = 'round'  # CLASS VARIABLE ( BOTH )
+
+    def __init__(self, name, radius, system):  # INSTANCE
+        self.name = name        # INSTANCE VARIABLE
+        self.radius = radius    # INSTANCE VARIABLE
+        self.system = system    # INSTANCE VARIABLE
+
+    def orbit(self):            # INSTANCE METHOD ( ONLY INST )
+        return f'{self.name} is orbiting in the {self.system}'
+
+    @classmethod
+    def common(cls):            # CLASS METHOD ( BOTH )
+        return f'All are {cls.shape}'  # USES THE CLASS VAR
+
+    @staticmethod
+    def spin(speed='really fast'):  # CANNOT TAKE COMMON VAR ONLY SHOULD TAKE PARAMETERS
+        return f'Speed will be {speed}'  # NO ACCESS TO SHAPE
+
+
+earth = Planet('earth', '2000', 'solar')
+print(earth.orbit())    # instance method
+# print(Planet.orbit())   # false if we call because it requires one arg
+print(Planet.shape)
+print(earth.shape)
+print(Planet.common())
+print(earth.common())
+print(Planet.spin("dont know sorry"))
+print(earth.spin("dont know sorry"))
 
 
 # INHERITANCE

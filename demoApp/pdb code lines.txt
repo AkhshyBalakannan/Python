@@ -1,0 +1,27 @@
+TO USE PDB WE HAVE TWO METHODS:
+1. TO IMPORT PDB AND GIVE A MANUAL BREAK POINT IN CODE BY PDB.TRACE()
+2. RUN THE PROGRAM WITH PYTHON -M PDB filename
+3. RUN THE PROGRAM IN PYTHON BY IMPORTING FILE AND IMPORT PDB AND GIEV PDB.RUN('FILENAME.FUNCTION')
+
+ALL THE STEPS ARE SIMILAR IN APPROACH BUT 
+	THE 1ST STEP WILL REQUIRE US TO ENTER MANUALLY THE BREAK POINT
+	THE 2ND STEP WILL STOP AND ACT AS DEBUGGER FROM THE START
+	THE 3RD STEP WILL ALSO STOP AT THE START AND ACT AS DEBUGGER
+
+COMMAND TO PASS IN PDB
+NOTE: Remember that our PDB will take the last command enter as the input when simply entered
+
+HELP OR H WILL LIST ALL THE COMMAND IN PDB
+
+	P varName	# To print the variable value at the point of program
+	where		# This is given to tell us where we are in prog
+	whatis varName	# This will return us the type of varName Function
+	step 		# This can be used to step into the function or class name
+	break		# We can set break point from pdb interface using BREAK LINE NUMBER | FUNCTION NAME
+	c		# Short for Continue
+	l		# To print an 11 lines of code for checking purpose
+	l .		# To goto the top of the program but this no =t much used
+	ll		# LONG LIST To see the current function we are in	
+	
+	p getattr(funcName, arg)	# To run an particular function we can use it 
+	pp getattr(funcName, arg)	# TO run a large display like dict or list

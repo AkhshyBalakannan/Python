@@ -52,7 +52,7 @@ for char in ran:
     val += char
 print(val)
 
-# generator 
+# generator
 
 data = 'golf'
 list(data[i] for i in range(len(data)-1, -1, -1))

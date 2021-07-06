@@ -19,3 +19,7 @@ def bank_acc(work_dir):
     os.chdir(work_dir)
     with open('testing', 'w') as f:
         f.write('HEY SUCCESSFULLY CHANGED DIR')
+
+
+if __name__ == "__main__":
+    bank_acc()

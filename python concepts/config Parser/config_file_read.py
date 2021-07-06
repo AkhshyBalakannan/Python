@@ -1,20 +1,30 @@
 from configparser import ConfigParser, ExtendedInterpolation
-from re import T
+
+# BASIC INTERPOLATION STRING TEMPLATE FROM SAME SECTION
+# EXTENDED INTERPOLATION STRING TEMPLATE FROM OTHER SECTION
 
 parser = ConfigParser(interpolation=ExtendedInterpolation())
 parser.read('config.ini')
+# parser.read('config.cfg') # Other format .cfg
+# USED TO READ THE FILE WHICH IS CREATED FROM CONFIG_FILE_CREATE
 
 print(parser.sections())
 print(parser.get('setting', 'secret'))
+# GETS THE DATA FROM SETTING SECTION WITH SECRET KEYTWORD
+
 print(parser.options('setting'))
 
 print('db' in parser)
 print(parser.get('data_base', 'db_port'))
 print(int(parser.get('data_base', 'db_port')))
+# INT TO GET THE VALUE AS INTEGER FOR FURTHER INTEGER FUNCTIONS
+
+# Set the optional *raw* argument of get() to True if you wish to disable
+# interpolation in a single get operation.
 print(parser.getint('data_base', 'db_port', raw=False))
 print(parser.getint('data_base', 'db_port', raw=True))
 
-print(parser.getint('data_base', 'dB_port', fallback=8080))
+print(parser.getint('data_base', 'db_port', fallback=8080))
 
 print(parser.getboolean('setting', 'debug'))
 

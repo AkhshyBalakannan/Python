@@ -7,7 +7,7 @@ from Functions import speak
 
 speak()
 
-# print(dir(m))
+print(dir(m))
 
 #  WE ALSO INSTALL MODULES FROM PYTHON MANAGER THAT IS PIP
 # PIP INSTALL PACKAGE_NAME

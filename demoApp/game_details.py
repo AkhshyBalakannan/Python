@@ -1,9 +1,12 @@
 import os
+from typing import get_args
 from iterator import Random
 
+'''The class D'''
 
-class details:
-    def game_acc(work_dir):
+
+class Details:
+    def do_game_account(work_dir):  # This is function to create an game account
         full_name = input("ENTER YOUR NAME:  ")
         year = input("ENTER YOUR BIRTH YEAR:  ")
         user_Id = input("ENTER AN ID NUMBER PROVIDED:  ")
@@ -20,3 +23,7 @@ class details:
         os.chdir(work_dir)
         with open('testing', 'w') as f:
             f.write('HEY SUCCESSFULLY CHANGED DIR')
+
+
+if __name__ == "__main__":
+    Details.game_acc()

@@ -127,11 +127,6 @@ print(name2)
 
 # to join list we use append() or extends or +
 
-
-#
-#
-#
-
 # Dictionaries are used to store data values in key:value pairs.
 # A dictionary is a collection which is ordered*, changeable and does not allow duplicates.
 # cannot be called using index values
@@ -249,11 +244,6 @@ myfamily = {
 
 print(myfamily)
 
-
-#
-#
-#
-
 # Once a set is created, you cannot change its items, but you can add new items.
 user = {"akhshy", "ganesh", "balakannan"}
 
@@ -326,10 +316,6 @@ print(alpha)
 # union()	Return a set containing the union of sets
 # update()	Update the set with the union of this set and others
 
-
-#
-#
-#
 
 # Tuples are used to store multiple items in a single variable
 # A tuple is a collection which is ordered and unchangeable

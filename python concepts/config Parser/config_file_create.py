@@ -1,3 +1,6 @@
+# THIS FILE IS TO USED TO CREATE AN DEFAULT CONFIG FILE WHILE RUN
+# USING THE FILE OPEN METHOD WITH CONFIG WRITE FUNCTION
+
 import configparser
 
 config = configparser.ConfigParser()
@@ -18,7 +21,8 @@ config['setting'] = {
 config['data_base'] = {
     'db_name': 'myapp',
     'db_host': 'localhost',
-    'db_port': '3000'
+    'db_port_no': '80',
+    'db_port': '3000+%(data_base: db_port_no)s'
 }
 
 config['files'] = {
