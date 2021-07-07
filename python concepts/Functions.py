@@ -40,7 +40,7 @@ speak()
 
 
 def sum(num1, num2):
-    return num1+num2
+    return num1 + num2
 
 
 ans = sum(2, 3)
@@ -50,7 +50,7 @@ print(ans)
 
 
 def sum(num1, num2):
-    return num1+num2
+    return num1 + num2
 
 
 ans = sum(num2=2, num1=3)

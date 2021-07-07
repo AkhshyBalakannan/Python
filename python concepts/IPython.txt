@@ -1,0 +1,110 @@
+# TO INSTALL IPYTHON WE SIMPLY TYPE PIP INSTALL IPYTHON IN TERMINAL 
+
+Ipython is used for the debugging process from the terminal interface itself
+
+To enter into IPython afte installing the IPython we simply type ipython and get in to the shell
+
+Common commands are ? and ?? for getting the over view and detailed view of the command
+
+ ?         -> Introduction and overview of IPython's features (this screen).
+  object?   -> Details about 'object'.
+  object??  -> More detailed, verbose information about 'object'.
+  %quickref -> Quick reference of all IPython specific syntax and magics.
+  help      -> Access Python's own help system.
+
+If you are in terminal IPython you can quit this screen by pressing `q`.
+
+MAIN FEATURES
+-------------
+
+* Access to the standard Python help with object docstrings and the Python
+  manuals. Simply type 'help' (no quotes) to invoke it.
+
+* Magic commands: type %magic for information on the magic subsystem.
+
+* System command aliases, via the %alias command or the configuration file(s).
+
+* Dynamic object information:
+
+  Typing ?word or word? prints detailed information about an object. Certain
+  long strings (code, etc.) get snipped in the center for brevity.
+
+  Typing ??word or word?? gives access to the full information without
+  snipping long strings. Strings that are longer than the screen are printed
+  through the less pager.
+
+  The ?/?? system gives access to the full source code for any object (if
+  available), shows function prototypes and other useful information.
+
+* Search previous command history in multiple ways:
+
+  - Start typing, and then use arrow keys up/down or (Ctrl-p/Ctrl-n) to search
+    through the history items that match what you've typed so far.
+
+  - Hit Ctrl-r: opens a search prompt. Begin typing and the system searches
+    your history for lines that match what you've typed so far, completing as
+    much as it can.
+
+  - %hist: search history by index.
+
+* Persistent command history across sessions.
+
+* Logging of input with the ability to save and restore a working session.
+
+* System shell with !. Typing !ls will run 'ls' in the current directory.
+
+* The reload command does a 'deep' reload of a module: changes made to the
+  module since you imported will actually be available without having to exit.
+
+* Verbose and colored exception traceback printouts. See the magic xmode and
+  xcolor functions for details (just type %magic).
+
+* Input caching system:
+
+  IPython offers numbered prompts (In/Out) with input and output caching. All
+  input is saved and can be retrieved as variables (besides the usual arrow
+  key recall).
+
+  The following GLOBAL variables always exist (so don't overwrite them!):
+  _i: stores previous input.
+  _ii: next previous.
+  _iii: next-next previous.
+  _ih : a list of all input _ih[n] is the input from line n.
+
+ 1. Auto-parentheses
+
+     Callable objects (i.e. functions, methods, etc) can be invoked like
+     this (notice the commas between the arguments)::
+
+         In [1]: callable_ob arg1, arg2, arg3
+
+     and the input will be translated to this::
+
+         callable_ob(arg1, arg2, arg3)
+
+ 2. Auto-Quoting
+
+     You can force auto-quoting of a function's arguments by using ',' as
+     the first character of a line.  For example::
+
+          In [1]: ,my_function /home/me   # becomes my_function("/home/me")
+
+     If you use ';' instead, the whole argument is quoted as a single
+     string (while ',' splits on whitespace)::
+
+          In [2]: ,my_function a b c   # becomes my_function("a","b","c")
+          In [3]: ;my_function a b c   # becomes my_function("a b c")
+
+     Note that the ',' MUST be the first character on the line!  This
+     won't work::
+
+          In [4]: x = ,my_function /home/me    # syntax error
+
+Debugging
+After an exception occurs, you can call %debug to jump into the Python debugger (pdb) and examine the problem. 
+Alternatively, if you call %pdb, IPython will automatically start the debugger on any uncaught exception. 
+You can print variables, see code, execute statements and even walk up and down the call stack to track down 
+the true source of the problem. This can be an efficient way to develop and debug code, in many cases eliminating 
+the need for print statements or external debugging tools.
+
+You can also step through a program from the beginning by calling %run -d theprogram.py
