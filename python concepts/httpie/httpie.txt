@@ -1,0 +1,109 @@
+Usage Hello World:
+
+https httpie.io/hello
+
+Synopsis:
+
+http [flags] [METHOD] URL [ITEM [ITEM]]
+See also http --help.
+
+Examples
+    Custom HTTP method, HTTP headers and JSON data:
+
+        http PUT pie.dev/put X-API-Token:123 name=John
+
+Submitting forms:
+    http -f POST pie.dev/post hello=World
+        
+See the request that is being sent using one of the output options:
+    http -v pie.dev/get
+
+Build and print a request without sending it using offline mode:
+    http --offline pie.dev/post hello=offline
+    
+Use GitHub API to post a comment on an issue with authentication:
+    http -a USERNAME POST https://api.github.com/repos/httpie/httpie/issues/83/comments body='HTTPie is awesome! :heart:'
+
+Upload a file using redirected input:
+    http pie.dev/post < files/data.json
+
+Download a file and save it via redirected output:
+    http pie.dev/image/png > image.png
+
+Download a file wget style:
+    http --download pie.dev/image/png
+
+Use named sessions to make certain aspects of the communication persistent between requests to the same host:
+    http --session=logged-in -a username:password pie.dev/get API-Key:123
+    http --session=logged-in pie.dev/headers
+
+Set a custom Host header to work around missing DNS records:
+    http localhost:8000 Host:example.com
+
+HTTP method
+The name of the HTTP method comes right before the URL argument:
+
+http DELETE pie.dev/delete
+
+Which looks similar to the actual Request-Line that is sent:
+DELETE /delete HTTP/1.1
+
+When the METHOD argument is omitted from the command, 
+HTTPie defaults to either GET (with no request data) or POST (with request data).
+Request URL
+The only information HTTPie needs to perform a request is a URL.
+
+The default scheme is http:// and can be omitted from the argument:
+
+▶ RUNhttp example.org
+# => http://example.org
+HTTPie also installs an https executable, where the default scheme is https://:
+
+▶ RUNhttps example.org
+# => https://example.org
+
+Querystring parameters
+If you find yourself manually constructing URLs with querystring parameters on the terminal, 
+you may appreciate the param==value syntax for appending URL parameters.
+With that, you don’t have to worry about escaping the & separators for your shell. 
+Additionally, any special characters in the parameter name or value get automatically 
+URL-escaped (as opposed to parameters specified in the full URL, which HTTPie doesn’t modify).
+
+▶ RUNhttp https://api.github.com/search/repositories q==httpie per_page==1
+GET /search/repositories?q=httpie&per_page=1 HTTP/1.1
+URL shortcuts for localhost
+Additionally, curl-like shorthand for localhost is supported. 
+This means that, for example :3000 would expand to http://localhost:3000 If the port is omitted, 
+then port 80 is assumed.
+
+▶ RUNhttp :/foo
+GET /foo HTTP/1.1
+Host: localhost
+▶ RUNhttp :3000/bar
+GET /bar HTTP/1.1
+Host: localhost:3000
+▶ RUNhttp :
+GET / HTTP/1.1
+Host: localhost
+Other default schemes
+When HTTPie is invoked as https then the default scheme is https:// ($ https example.org will make a 
+request to https://example.org).
+
+You can also use the --default-scheme <URL_SCHEME> option to create shortcuts for other protocols 
+than HTTP (possibly supported via plugins). Example for the httpie-unixsocket plugin:
+
+▶ RUN# Before
+http http+unix://%2Fvar%2Frun%2Fdocker.sock/info
+▶ RUN# Create an alias
+alias http-unix='http --default-scheme="http+unix"'
+▶ RUN# Now the scheme can be omitted
+http-unix %2Fvar%2Frun%2Fdocker.sock/info
+--path-as-is
+The standard behaviour of HTTP clients is to normalize the path portion of URLs by squashing dot segments as a typically filesystem would:
+
+▶ RUNhttp -v example.org/./../../etc/password
+GET /etc/password HTTP/1.1
+The --path-as-is option allows you to disable this behavior:
+
+▶ RUNhttp --path-as-is -v example.org/./../../etc/password
+GET /../../etc/password HTTP/1.1
