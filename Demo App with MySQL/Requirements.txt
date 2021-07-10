@@ -1,0 +1,16 @@
+To use this we need to install mysql-connector-python
+create an virtual env for installing the connection
+
+python -m venv venv
+
+pip install mysql-connector-python
+
+Download mysql application file from the oracle page
+
+Install python connector with all completed requirements in that list
+
+Once after doing it you will see the MySQL cilent side terminal which is can be used 
+
+To open the database we can give the password that was created by the mysql app
+
+from python file we can access them by importing the mysql.connector
