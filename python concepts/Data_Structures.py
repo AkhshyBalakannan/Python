@@ -1,6 +1,7 @@
 # # Python data Structure
 # # variables and type
 
+from collections import deque
 first_name = "Akhshy"
 phone_number = 9087991886
 is_employeed = True
@@ -127,6 +128,105 @@ print(name2)
 
 # to join list we use append() or extends or +
 
+# To implement a queue, use collections.deque which was designed to have fast appends and pops from both ends. For example:
+
+queue = deque(["Eric", "John", "Michael"])
+queue.append("Terry")           # Terry arrives
+queue.append("Graham")          # Graham arrives
+queue.popleft()                 # The first to arrive now leaves
+
+queue.popleft()                 # The second to arrive now leaves
+
+queue                           # Remaining queue in order of arrival
+
+
+# List Comprehensions
+# This is usually written to create list in iterators
+
+squares = []
+for x in range(10):
+    squares.append(x**2)
+
+# squares [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+# We can write the same code in oneline
+squares = [x**2 for x in range(10)]
+# squares [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+
+# We can also have multi level for loops
+[(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
+# [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
+
+# Which will be written as
+combs = []
+for x in [1, 2, 3]:
+    for y in [3, 1, 4]:
+        if x != y:
+            combs.append((x, y))
+
+# combs [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
+
+# We can also call method function tuple
+
+vec = [-4, -2, 0, 2, 4]
+# create a new list with the values doubled
+[x*2 for x in vec]
+# [-8, -4, 0, 4, 8]
+# filter the list to exclude negative numbers
+[x for x in vec if x >= 0]
+# [0, 2, 4]
+# apply a function to all the elements
+[abs(x) for x in vec]
+# [4, 2, 0, 2, 4]
+# call a method on each element
+freshfruit = ['  banana', '  loganberry ', 'passion fruit  ']
+[weapon.strip() for weapon in freshfruit]
+# ['banana', 'loganberry', 'passion fruit']
+# create a list of 2-tuples like (number, square)
+[(x, x**2) for x in range(6)]
+# [(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
+# the tuple must be parenthesized, otherwise an error is raised
+# [x, x**2 for x in range(6)]
+#   File "<stdin>", line 1, in <module>
+#     [x, x**2 for x in range(6)]
+#                ^
+# SyntaxError: invalid syntax
+# flatten a list using a listcomp with two 'for'
+vec = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+[col for row in vec for col in row]
+# [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# zip() should only be used with unequal length
+# inputs when you don’t care about trailing, unmatched values
+# from the longer iterables.
+# zip() in conjunction with the * operator can be used to unzip a list:
+
+x = [1, 2, 3]
+y = [4, 5, 6]
+zipped = zip(x, y)
+list(zipped)
+[(1, 4), (2, 5), (3, 6)]
+x2, y2 = zip(*zip(x, y))
+x == list(x2) and y == list(y2)
+# True
+
+
+# del statment can be used to delete data from the list
+a = [-1, 1, 66.25, 333, 333, 1234.5]
+del a
+# Will delete the entire list
+a = [-1, 1, 66.25, 333, 333, 1234.5]
+del a[0]
+print(a)
+# [1, 66.25, 333, 333, 1234.5]
+del a[2:4]
+print(a)
+# [1, 66.25, 1234.5]
+del a[:]
+print(a)
+# []
+
 # Dictionaries are used to store data values in key:value pairs.
 # A dictionary is a collection which is ordered*, changeable and does not allow duplicates.
 # cannot be called using index values
@@ -244,6 +344,22 @@ myfamily = {
 
 print(myfamily)
 
+# Zip Function can be used to create dictionary
+questions = ['name', 'quest', 'favorite color']
+answers = ['lancelot', 'the holy grail', 'blue']
+for q, a in zip(questions, answers):
+    print('What is your {0}?  It is {1}.'.format(q, a))
+
+# What is your name?  It is lancelot.
+# What is your quest?  It is the holy grail.
+# What is your favorite color?  It is blue.
+
+
+# Dictionary comprehension
+{x: x**2 for x in (2, 4, 6)}
+# {2: 4, 4: 16, 6: 36}
+
+# SET
 # Once a set is created, you cannot change its items, but you can add new items.
 user = {"akhshy", "ganesh", "balakannan"}
 
@@ -261,6 +377,23 @@ fruits.add("orange")
 
 juice = {"pineapple", "mango", "papaya"}
 juice.update(fruits)
+
+basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+print(basket)                      # show that duplicates have been removed
+# {'orange', 'banana', 'pear', 'apple'}
+# Demonstrate set operations on unique letters from two words
+a = set('abracadabra')
+b = set('alacazam')
+print(a)                                 # unique letters in a
+# {'a', 'r', 'b', 'c', 'd'}
+print(a - b)                              # letters in a but not in b
+# {'r', 'd', 'b'}
+print(a | b)                             # letters in a or b or both
+# {'a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'}
+print(a & b)                              # letters in both a and b
+# {'a', 'c'}
+print(a ^ b)                              # letters in a or b but not both
+# {'r', 'd', 'b', 'm', 'z', 'l'}
 
 # Sets are unordered, so when using the pop() method, you do not know which item that gets removed.
 
@@ -343,6 +476,11 @@ fruits += y
 
 print(fruits)
 
+# Similarly to list comprehensions, set comprehensions are also supported:
+
+a = {x for x in 'abracadabra' if x not in 'abc'}
+print(a)
+# {'r', 'd'}
 
 ########## TO REMOVE OR UPADTE USE LIST SAME COMMANDS CHANGE TUPLE TO LIST AND WORK ############
 
@@ -372,6 +510,18 @@ fruits = ("apple", "banana", "cherry", "strawberry", "raspberry")
 print(1)
 print(2)
 print(3)
+
+t = 12345, 54321, 'hello!'
+# The statement t = 12345, 54321, 'hello!' is an example of tuple packing:
+# the values 12345, 54321 and 'hello!' are packed together in a tuple.
+#  The reverse operation is also possible:
+x, y, z = t
+# This is called, appropriately enough, sequence unpacking and
+# works for any sequence on the right-hand side.
+# Sequence unpacking requires that there are as many variables on the
+# left side of the equals sign as there are elements in the sequence.
+# Note that multiple assignment is really just a combination of tuple
+# packing and sequence unpacking.
 
 
 # looping tuple

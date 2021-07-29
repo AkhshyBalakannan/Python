@@ -31,6 +31,7 @@ config['files'] = {
 }
 
 config.set('files', 'stored', 'no')
+# the above line creates an key value pair in the files sections
 
 
 with open('config.ini', 'w') as f:

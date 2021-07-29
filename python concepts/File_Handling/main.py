@@ -5,8 +5,14 @@
 
 # TO READ THE FILE WE GIVE OBJECT_NAME.READ()
 
+import filecmp
+import sys
+from stat import *
+import re
+import fnmatch
 import shutil
 import os
+import tempfile
 file = open("ToRead.txt")
 
 print(file.read())
@@ -125,3 +131,105 @@ shutil.copyfile(src + "file name", dst + "file name")
 # TO MOVE THE FILE OR FOLDER WE USE MOVE
 
 shutil.move(src + "file name", dst)
+
+
+# fnmatch — Unix filename pattern matching
+
+# import fnmatch
+# import os
+
+for file in os.listdir('.'):
+    if fnmatch.fnmatch(file, '*.txt'):
+        print(file)
+
+# * matches everything
+
+# ? matches any single character
+
+# [seq] matches any character in seq
+
+# [!seq] matches any character not in seq
+
+
+regex = fnmatch.translate('*.txt')
+print(regex)
+# '(?s:.*\\.txt)\\Z'
+reobj = re.compile(regex)
+print(reobj.match('foobar.txt'))
+# <re.Match object; span=(0, 10), match='foobar.txt'>
+
+
+# stat
+# Normally, you would use the os.path.is*() functions
+# for testing the type of a file; the functions here are useful
+# when you are doing multiple tests of the same file and wish to
+# avoid the overhead of the stat() system call for each test.
+# These are also useful when checking for information about a
+# file that isn’t handled by os.path, like the tests for block
+# and character devices.
+
+# filecmp
+filecmp.cmp(f1, f2, shallow=True)
+#   Compare the files named f1 and f2, returning True if they seem equal, False otherwise.
+
+filecmp.cmpfiles(dir1, dir2, common, shallow=True)
+#   Compare the files in the two directories dir1 and dir2 whose names are given by common.
+
+
+# The dircmp class
+
+class filecmp.dircmp(a, b, ignore=None, hide=None)
+# Construct a new directory comparison object, to compare the directories a and b.
+
+
+# tempfile — Generate temporary files and directories
+
+# import tempfile
+tempfile.TemporaryFile(mode='w+b', buffering=-1, encoding=None,
+                       newline=None, suffix=None, prefix=None, dir=None, *, errors=None)
+
+tempfile.NamedTemporaryFile(mode='w+b', buffering=-1, encoding=None,
+                            newline=None, suffix=None, prefix=None, dir=None, delete=True, *, errors=None)
+
+tempfile.TemporaryDirectory(suffix=None, prefix=None, dir=None)
+# This function securely creates a temporary directory using the same rules as mkdtemp().
+
+tempfile.mkstemp(suffix=None, prefix=None, dir=None, text=False)
+# Creates a temporary file in the most secure manner possible
+
+tempfile.mkdtemp(suffix=None, prefix=None, dir=None)
+# Creates a temporary directory in the most secure manner possible.
+
+
+tempfile.gettempdir()¶
+# Return the name of the directory used for temporary files.
+
+tempfile.gettempdirb()
+# Same as gettempdir() but the return value is in bytes.
+
+
+# import tempfile
+
+# create a temporary file and write some data to it
+fp = tempfile.TemporaryFile()
+fp.write(b'Hello world!')
+# read data from file
+fp.seek(0)
+fp.read()
+b'Hello world!'
+# close the file, it will be removed
+fp.close()
+
+# create a temporary file using a context manager
+with tempfile.TemporaryFile() as fp:
+    fp.write(b'Hello world!')
+    fp.seek(0)
+    fp.read()
+b'Hello world!'
+# file is now closed and removed
+
+# create a temporary directory using the context manager
+with tempfile.TemporaryDirectory() as tmpdirname:
+    print('created temporary directory', tmpdirname)
+
+# directory and contents have been removed

@@ -1,23 +1,38 @@
-from configparser import ConfigParser, ExtendedInterpolation
+from configparser import BasicInterpolation, ConfigParser, ExtendedInterpolation
 
 # BASIC INTERPOLATION STRING TEMPLATE FROM SAME SECTION
 # EXTENDED INTERPOLATION STRING TEMPLATE FROM OTHER SECTION
 
+# CONFIG PARSER IS CASE INSENSITIVE WHILE A IN CONFIG == a IN CONFIG
+
+parser = ConfigParser(interpolation=None)
+parser = ConfigParser(interpolation=BasicInterpolation())
 parser = ConfigParser(interpolation=ExtendedInterpolation())
 parser.read('config.ini')
 # parser.read('config.cfg') # Other format .cfg
 # USED TO READ THE FILE WHICH IS CREATED FROM CONFIG_FILE_CREATE
 
 print(parser.sections())
+# This will return the sections present in the config file without default
 print(parser.get('setting', 'secret'))
-# GETS THE DATA FROM SETTING SECTION WITH SECRET KEYTWORD
+# GETS THE DATA FROM SETTING SECTION WITH SECRET KEYWORD 1POS ARGS IS REQUIRED
 
 print(parser.options('setting'))
+# returns the section names
+print(parser.items())
+# Return including the default section
 
 print('db' in parser)
 print(parser.get('data_base', 'db_port'))
 print(int(parser.get('data_base', 'db_port')))
 # INT TO GET THE VALUE AS INTEGER FOR FURTHER INTEGER FUNCTIONS
+
+parser.getboolean('db_port')
+# False
+config['config.ini'].getboolean('data_base')
+# True
+config.getboolean('config.ini', 'data_base')
+# True
 
 # Set the optional *raw* argument of get() to True if you wish to disable
 # interpolation in a single get operation.
@@ -38,3 +53,72 @@ except parser.NoSectionError:
 
 finally:
     print("END OF PROGRAM")
+
+#  EXCEPTION HANDLING
+
+# exception configparser.Error
+# exception configparser.NoSectionError
+# exception configparser.DuplicateSectionError
+# exception configparser.DuplicateOptionError
+
+# exception configparser.NoOptionError
+# Exception raised when a specified option is not found in the specified section.
+
+# exception configparser.InterpolationError
+
+# exception configparser.InterpolationDepthError
+# Exception raised when string interpolation cannot be completed because the number of iterations exceeds MAX_INTERPOLATION_DEPTH. Subclass of InterpolationError.
+
+# exception configparser.InterpolationMissingOptionError
+
+# exception configparser.InterpolationSyntaxError
+
+# exception configparser.ParsingError
+# Exception raised when errors occur attempting to parse a file.
+
+# .clear() on a section may not leave the section visibly empty.
+# This is because default values cannot be deleted from the section
+# DEFAULTSECT cannot be removed from the parser:
+
+# trying to delete it raises ValueError,
+
+# parser.clear() leaves it intact,
+
+# parser.popitem() never returns it.
+
+
+#
+# ConfigParser Objects
+''' class configparser.ConfigParser(defaults=None, dict_type=dict, 
+ allow_no_value=False, delimiters=('=', ':'), comment_prefixes=('#', ';'), 
+ inline_comment_prefixes=None, strict=True, empty_lines_in_values=True, 
+ default_section=configparser.DEFAULTSECT, interpolation=BasicInterpolation(), 
+ converters={}) '''
+# defaults()
+# sections()
+# add_section(section)
+# has_section(section)
+# options(section)
+# has_option(section, option)
+# read(filenames, encoding=None)
+# Attempt to read and parse an iterable of filenames, returning a list of filenames which were successfully parsed.
+# read_file(f, source=None)
+# Read and parse configuration data from f which must be an iterable yielding Unicode strings(for example files opened in text mode).
+# read_string(string, source='<string>')
+# Parse configuration data from a string.
+# read_dict(dictionary, source='<dict>')
+# get(section, option, *, raw=False, vars=None[, fallback])
+# getint(section, option, *, raw=False, vars=None[, fallback])
+# getfloat(section, option, *, raw=False, vars=None[, fallback])
+# getboolean(section, option, *, raw=False, vars=None[, fallback])
+# items(raw=False, vars=None)
+# items(section, raw=False, vars=None)
+# set(section, option, value)
+# write(fileobject, space_around_delimiters=True)
+# remove_option(section, option)
+# Remove the specified option from the specified section.
+# remove_section(section)
+# Remove the specified section from the configuration.
+# optionxform(option)
+# Transforms the option name option as found in an input file
+# read_file()

@@ -23,6 +23,18 @@ elif age < 40:
 else:
     print('Oh boy I dont know that')
 
+# Control statements
+if age == 0:
+    pass
+
+for i in len(10):
+    print("Hey your 5 wont print here")
+    if i == 5:
+        continue
+
+    elif i == 9:
+        break
+
 # FOR LOOP
 
 names = ["akhshy", "ryu", "bala"]

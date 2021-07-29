@@ -1,5 +1,5 @@
 from bank_details import bank_acc
-from game_details import details
+from game_details import Details
 import os
 
 
@@ -23,7 +23,7 @@ def check_run_config_create(to_acc, work_dir):
             bank_acc(work_dir)
         elif to_acc == '2':
             run = False
-            details.game_acc(work_dir)
+            Details.game_acc(work_dir)
         else:
             to_acc = input('Enter 1 OR 2 : ')
 
