@@ -1,4 +1,4 @@
-# This logging is simple used instead of print statements where the
+# This logging is simpley used instead of print statements where the
 # print statements cannot be caught and is left in air at that time
 # to store the data we use logging which is library included in python
 

@@ -63,6 +63,7 @@ HTTPie also installs an https executable, where the default scheme is https://:
 # => https://example.org
 
 Querystring parameters
+
 If you find yourself manually constructing URLs with querystring parameters on the terminal, 
 you may appreciate the param==value syntax for appending URL parameters.
 With that, you don’t have to worry about escaping the & separators for your shell. 

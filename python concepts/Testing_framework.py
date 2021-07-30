@@ -36,6 +36,12 @@ if __name__ == '__main__':
 
 
 # python -m unittest -v test_module
+# Unit test support these command lineoptions
+# -b --buffer   The standard output and standard error streams are buffered during the test run
+# -c, --catch   Control-C during the test run waits for the current test to end and
+#               then reports all the results so far
+# -f,--failfast Stop the test run on the first error or failure.
+# -k            Only run test methods and classes that match the pattern or substring.
 
 # PYTHON HAS AN SETUP()
 # METHOD WHICH WILL BE INITIALIZED EACH AND EVERY TIME THE TEST CLASS IS CALLED
@@ -50,6 +56,57 @@ class WidgetTestCase(unittest.TestCase):
         self.widget.dispose()
 
 # WE ALSO HAVE A TEARDOWN METHOD THAT IS USED TO TEAR DOWN THE SETUP METHOD
+
+
+# Test Discovery
+# cd project_directory
+# python - m unittest discover
+
+# The discover sub-command has the following options:
+
+# -v, --verbose                         Verbose output
+
+# -s, --start-directory directory       Directory to start discovery(. default)
+
+# -p, --pattern pattern                 Pattern to match test files(test*.py default)
+
+# -t, --top-level-directory directory   Top level directory of project(defaults to start directory)
+
+
+# in order to test something, we use one of the assert*() methods
+# provided by the TestCase base class. If the test fails, an exception
+# will be raised with an explanatory message, and unittest will identify
+# the test case as a failure. Any other exceptions will be treated as errors.
+
+# SUITE()
+# The subclassing of unititest.TestCase will automatically
+# group the functions together and run
+# we can also group them how ever we want using the suite method
+def suite():
+    suite = unittest.TestSuite()
+    suite.addTest(WidgetTestCase('test_default_widget_size'))
+    suite.addTest(WidgetTestCase('test_widget_resize'))
+    return suite
+
+
+if __name__ == '__main__':
+    runner = unittest.TextTestRunner()
+    runner.run(suite())
+
+
+# RE_USING OLD TEST CASE
+# Re-using old test case are possible
+# Some users will find that they have existing test code that they would like to run
+# unittest provides a FunctionTestCase class.
+# This subclass of TestCase can be used to wrap an existing test function.
+# Set-up and tear-down functions can also be provided.
+
+testcase = unittest.FunctionTestCase(MyTestCase.Test_format,
+                                     setUp=startDB,
+                                     tearDown=deleteDB)
+
+# The above method is not suggested because creating new testcase can
+# solve a lot of headache in future testing purpose
 
 # WE CAN ALSO Skipping tests and expected failures
 
@@ -79,14 +136,50 @@ class MyTestCase(unittest.TestCase):
 
 
 # SKIPTEST() WILL NOT HAVE THE SETUP METHOD AND TEARDOWN METHOD OR EVEN IN CLASS
-# OR IT COMMON IT DOES NOT HAVE THE SETUP AND TEARDOWN MODULE
+# OR IN COMMON IT DOES NOT HAVE THE SETUP AND TEARDOWN MODULE
 
-# WE CAN USE PYTEST
+@unittest.skip("showing class skipping")
+class MySkippedTestCase(unittest.TestCase):
+    def test_not_run(self):
+        pass
 
 
-# PYTEST -H WILL GIVE ALL THE FLAGS
+class ExpectedFailureTestCase(unittest.TestCase):
+    @unittest.expectedFailure
+    def test_fail(self):
+        self.assertEqual(1, 0, "broken")
 
-# ASSERT ARE STATEMENT WHICH ARE USED TO CHECK THE FUNCTION WITH EXPECTED VALUES
+
+# We also have subtest that is written inside test function
+# this becomes handy when same test should be carried with minor val changes
+class NumbersTest(unittest.TestCase):
+
+    def test_even(self):
+        """
+        Test that numbers between 0 and 5 are all even.
+        """
+        for i in range(0, 6):
+            with self.subTest(i=i):
+               # the above code is handy because it doesnt stop
+                # execution as the first error is encountered
+
+
+setUpClass()
+#   A class method called before tests in an individual class are run.
+@classmethod
+def setUpClass(cls):
+
+
+tearDownClass()
+# A class method called after tests in an individual class have run.
+
+
+@classmethod
+def tearDownClass(cls):
+
+    # WE CAN USE PYTEST
+    # PYTEST -H WILL GIVE ALL THE FLAGS
+    # ASSERT ARE STATEMENT WHICH ARE USED TO CHECK THE FUNCTION WITH EXPECTED VALUES
 
 
 def test_add():  # we need to import the file

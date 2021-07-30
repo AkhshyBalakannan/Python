@@ -31,7 +31,7 @@ stream_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
 
-# The below line will not used because we are not going to use the base root logger
+# The below line will not be used because we are not going to use the base root logger
 # logging.basicConfig(filename='main.log', level=logging.DEBUG,
 #                     format='%(asctime)s:%(levelname)s:%(message)s')
 
@@ -44,7 +44,7 @@ def add(num1, num2):
 def divide(num1, num2):
     """Divide Function"""
     return num1/num2
-# Below code is to be run with the uncomment of line 23 to print error alone
+# Below code is to be run with uncomment of line 23 (file_handler.setLevel(logging.ERROR)) to print error alone
     # try:
     #     result = num1 / num2
     # except ZeroDivisionError:
