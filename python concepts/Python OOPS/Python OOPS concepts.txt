@@ -1,0 +1,109 @@
+PYTHON OOPS  TO RUN CODE PYTHON_OOPS.PY FILE
+
+Class is like some function which creates us instance of object with the attributes
+
+Function inside class are called as METHOD
+Arguments for class are called as Attributes
+
+We have constructor which runs when ever we call the class 
+
+__init__(self):
+	# self is the automatic instance which is sent to init
+
+__init__(self, name, pay):
+	# other two are the attributes which will be assigned to instance
+
+## Important Note you may have faced an error message saying something takes only one agrs but 
+	two were given 
+## This is mostly when you call a class or class methods with extra attributes use self.attr
+## Go Down you will understand
+
+
+METHOD 
+This is simply the function which is inside the class
+We have three methods in OOPS 
+	instance method
+	class method
+	static method
+
+Instance method is the function which is called by an instance and is specific to that instance
+
+Class method is also called as Re-constructor for the class as it has cls attr which calls INIT
+
+Static method is the function which doesnt have any connection to class or instance attributes
+
+
+Instance Method is passed with a SELF attributes automatically
+
+Class Method is passed with a CLS attributes automatically
+
+Static Method doesn't pass an attributes automattically
+
+Instance method are mostly used to manipulate the attributes of the instance and to get output
+
+Class Method are normally called as re-constructor because we have cls attribute which can be used
+to create a class and which will run the constructor Mostly class Method are used for default values
+
+Static Method are used when we don't have any connection with the attributes and we return value with
+attributes we give to the method
+
+
+
+We also have magic methods which is called behind the scenes like add, sub, multi function 
+note: See Python documentations
+
+	def __add__(self):
+		pass
+
+Where we have the str and repr magic function which is called automatically when the class obj is called
+
+Normally the STR is called and for user end displaying
+
+REPR is for development and programmer side but still we can access them explicitly by calling repr() str()
+
+These are magic method which is called behind the scene
+
+we also have len function which calculates the len and the function behind it is __len__()
+
+
+Property Decorator
+
+Here we have decorator which makes the method as an attribute 
+
+for example see the code 
+
+The explanation is that when we have an email attribute which is in init 
+which uses the first and last name to create it but when the user changes the first name
+the email id wont get changed because its an hardcoded attribute
+
+So to solve this we can simply change it to an method which will render value each time
+but the problem is if we are already using that email attribute in multiple places than
+we need to change all the attr to method with () in ending so to solve this we can use the
+property decorator which makes the method look like an attr from outside but the code is method
+
+
+
+
+Another problem here in code is the fullname that is if we ever try to change the fullname with 
+value than python will shout us telling we cannot set the value, to solve this we need to change
+the current method as property method and write one more method which will set first and last 
+name to do we use the function_name.setter which does the job for us 
+
+
+We also have a deleter property which will delete the attr and to use that we give function_name.deleter
+and inside the function we simply say the self.attr = None to delete them 
+This is like an clean up function which will clean the attrs
+
+
+We have an getter decorator which is used for the protected attr and this are written with a leading _
+This is to tell other developer not to modify the attr outside the class and to call uses getter property
+
+
+
+
+
+
+
+
+
+
